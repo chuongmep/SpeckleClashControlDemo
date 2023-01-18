@@ -1,0 +1,56 @@
+﻿@page "/fetchclash"
+@using ClashModel
+@using ClashBlazorApp.Data
+<h3>Test</h3>
+<h1>Clash Data</h1>
+
+<p>This component demonstrates fetching latest clash data from Speckle</p>
+
+@if (ClashDatas == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table" datapagesize="10">
+        <thead>
+        <tr>
+            <th>Clash Name</th>
+            <th>Guid</th>
+            <th>Status</th>
+            <th>Distance</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var clashTest in ClashDatas)
+        {
+            <tr>
+                <td>@clashTest.Name</td>
+                <td>@clashTest.Guid</td>
+                <td>@clashTest.Status</td>
+                <td>@clashTest.Distance</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private Clash[] ClashDatas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        ClashServices clashServices = new ClashServices();
+        ClashTest[]? clashTests = await clashServices.GetClashDataAsyn();
+        List<Clash>[] clashes = clashTests.Select(x=>x.Clashes).ToArray();
+        List<Clash> clashesList = new List<Clash>();
+        foreach (List<Clash> clash in clashes)
+        {
+            clashesList.AddRange(clash);
+        }
+        ClashDatas = clashesList.ToArray();
+    }
+
+}

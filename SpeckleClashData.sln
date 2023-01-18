@@ -1,0 +1,28 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "NavisAddin", "NavisAddin\NavisAddin.csproj", "{785D9700-C98E-443C-A63B-8C23F1ED02E7}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClashModel", "ClashModel\ClashModel.csproj", "{CE1C5000-3FE6-40E9-8578-2E06CEF2BF3E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClashBlazorApp", "ClashBlazorApp\ClashBlazorApp.csproj", "{20237BE1-989E-469F-AA57-A8DDB32EE945}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{785D9700-C98E-443C-A63B-8C23F1ED02E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{785D9700-C98E-443C-A63B-8C23F1ED02E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{785D9700-C98E-443C-A63B-8C23F1ED02E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{785D9700-C98E-443C-A63B-8C23F1ED02E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CE1C5000-3FE6-40E9-8578-2E06CEF2BF3E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CE1C5000-3FE6-40E9-8578-2E06CEF2BF3E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CE1C5000-3FE6-40E9-8578-2E06CEF2BF3E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CE1C5000-3FE6-40E9-8578-2E06CEF2BF3E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{20237BE1-989E-469F-AA57-A8DDB32EE945}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{20237BE1-989E-469F-AA57-A8DDB32EE945}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{20237BE1-989E-469F-AA57-A8DDB32EE945}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{20237BE1-989E-469F-AA57-A8DDB32EE945}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+EndGlobal

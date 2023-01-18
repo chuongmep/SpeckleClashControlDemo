@@ -1,0 +1,54 @@
+﻿@page "/fetchclashtest"
+@using ClashModel
+@using ClashBlazorApp.Data
+@using BlazorBootstrap;
+<PageTitle>Clash Test</PageTitle>
+
+<h1>Clash Test Data</h1>
+
+<p>This component demonstrates fetching data from Speckle</p>
+
+@if (ClashDatas == null)
+{
+    <p>
+        <em>Loading...</em>
+        <ProgressBar Width="20" Label="20%"/>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Clash Name</th>
+            <th>Guid</th>
+            <th>Clash Count</th>
+            <th>Status</th>
+            <th>LastRun</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var clashTest in ClashDatas)
+        {
+            <tr>
+                <td>@clashTest.Name</td>
+                <td>@clashTest.Guid</td>
+                <td>@clashTest.ClashCount</td>
+                <td>@clashTest.Status</td>
+                <td>@clashTest.LastRun</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private ClashTest[]? ClashDatas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        ClashServices clashServices = new ClashServices();
+        ClashTest[]? clashes = await clashServices.GetClashDataAsyn();
+        ClashDatas = clashes;
+    }
+}

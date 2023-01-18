@@ -1,0 +1,57 @@
+﻿@page "/fetchdata"
+@using BlazorApp1.ClashData
+@using ClashModel
+@using Speckle.Newtonsoft.Json
+@inject HttpClient Http
+
+<PageTitle>Weather forecast</PageTitle>
+
+<h1>Weather forecast</h1>
+
+<p>This component demonstrates fetching data Clash From Sepeckle.</p>
+
+@if (ClashDatas == null)
+{
+    <p>
+        <em>Loading...</em>
+    </p>
+}
+else
+{
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Clash Name</th>
+            <th>Guid</th>
+            <th>Clash Count</th>
+            <th>Status</th>
+        </tr>
+        </thead>
+        <tbody>
+        @foreach (var forecast in ClashDatas)
+        {
+            <tr>
+                <td>@forecast.Name</td>
+                <td>@forecast.Guid</td>
+                <td>@forecast.ClashCount</td>
+                <td>@forecast.Status</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+}
+
+@code {
+    private List<ClashTest> ClashDatas;
+
+    protected override async Task OnInitializedAsync()
+    {
+        var  client =  new  HttpClient();
+        var  response = await client.GetAsync( "https://speckle.xyz/objects/14568be237/ee3f2685bc7b757c3c254c56139dbc32" );
+        var  jsonstring = await response.Content.ReadAsStringAsync();
+        var  clashes = JsonConvert.DeserializeObject<List<ClashTest>>(jsonstring);
+        ClashDatas = clashes; //= await Http.get<Clash[]>("sample-data/weather.json");
+    }
+    
+
+}

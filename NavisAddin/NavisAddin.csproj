@@ -1,0 +1,44 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <TargetFramework>net48</TargetFramework>
+        <LangVersion>10</LangVersion>
+        <NavisVersion>2023</NavisVersion>
+        <Nullable>enable</Nullable>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <PackageReference Include="Chuongmep.Navis.Api.Autodesk.Navisworks.Api" Version="2023.0.6" />
+      <PackageReference Include="Chuongmep.Navis.Api.Autodesk.Navisworks.Clash" Version="2023.0.6" />
+      <PackageReference Include="Speckle.Core" Version="2.11.0" />
+      <PackageReference Include="Speckle.Objects" Version="2.10.3" />
+      <PackageReference Include="System.Runtime.CompilerServices.Unsafe" Version="7.0.0-preview.2.22152.2" />
+    </ItemGroup>
+    <ItemGroup>
+        <OutFilesAssembly Include="$(ProjectDir)$(OutDir)**\*.*" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\ClashModel\ClashModel.csproj" />
+    </ItemGroup>
+    <ItemGroup>
+      <Compile Remove="bin\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <EmbeddedResource Remove="bin\**" />
+    </ItemGroup>
+    <ItemGroup>
+      <None Remove="bin\**" />
+    </ItemGroup>
+    <PropertyGroup>
+        <PackageDefined>$(ProjectDir)PackageContents.xml</PackageDefined>
+        <BundleFolder>C:\ProgramData\Autodesk\ApplicationPlugins\SendDataSpeckle.bundle\</BundleFolder>
+    </PropertyGroup>
+    <Target Name="MakeMyDir" AfterTargets="Build">
+        <MakeDir Directories="$(BundleFolder)" />
+    </Target>
+    <Target Name="CopyFiles" AfterTargets="Build">
+        <Copy SourceFiles="$(PackageDefined)" DestinationFolder="$(BundleFolder)" />
+        <Copy SourceFiles="@(OutFilesAssembly)" DestinationFolder="$(BundleFolder)Contents\$(NavisVersion)\%(RecursiveDir)" />
+    </Target>
+
+</Project>
